@@ -31,17 +31,25 @@ public:
                     break;
                 }
                 case '2': {
-                    string tenHang;
+                    int maHang;
                     int soLuong;
-                    cout << "Nhap ten hang: ";
-                    cin >> tenHang;
-                    cout << "Nhap so luong bot: ";
-                    cin >> soLuong;
-                    gioHang.botHangHoa(tenHang, soLuong);
-                    break;
+                    cout << "<------------------->\n";
+                    cout << "Nhap ma hang: ";
+                    cin >> maHang;
+                    if (gioHang.checkMa(maHang)) {
+                        cout << "Nhap so luong bot: ";
+                        cin >> soLuong;
+                        gioHang.botHangHoa(maHang, soLuong);
+                        break;
+                    }
+                    else {
+                        cout << "Ma hang khon ton tai !" << endl;
+                        break;
+                    }
                 }
                 case '3': {
                     cout << "Noi dung gio hang:\n";
+                    cout << "<------------------->\n";
                     gioHang.xuatGioHang();
                     break;
                 }

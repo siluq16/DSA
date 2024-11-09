@@ -14,7 +14,7 @@ private:
     float revenue;
 
 public:
-    Rap() : cinemaID(""), cinemaName(""), seatCount(0), revenue(0.0f) {}
+    Rap() {}
     Rap(string id, string name, int seats) : cinemaID(id), cinemaName(name), seatCount(seats), revenue(0.0f) {}
 
     friend istream& operator>>(istream& is, Rap& r) {

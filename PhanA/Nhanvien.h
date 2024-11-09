@@ -7,13 +7,15 @@ using namespace std;
 
 class NhanVien {
 private:
+
     string employeeID;
     string name;
     string position;
     float salary;
 
 public:
-    NhanVien() : employeeID(""), name(""), position(""), salary(0.0f) {}
+
+    NhanVien() {}
     NhanVien(string id, string n, string p, float s) : employeeID(id), name(n), position(p), salary(s) {}
 
     friend istream& operator>>(istream& is, NhanVien& nv) {

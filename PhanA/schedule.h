@@ -16,7 +16,7 @@ private:
 
 
 public:
-    LichChieu() : scheduleID(""), movieID(""), cinemaID(""), showTime(""), ticketPrice(0.0f), seatsSold(0) {}
+    LichChieu() {}
     LichChieu(string sid, string mid, string cid, string stime, float price, int sold) 
         : scheduleID(sid), movieID(mid), cinemaID(cid), showTime(stime), ticketPrice(price), seatsSold(sold) {}
 

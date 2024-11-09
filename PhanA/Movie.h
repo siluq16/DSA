@@ -13,7 +13,7 @@ private:
     float revenue;
 
 public:
-    Phim() : movieID(""), movieName(""), genre(""), revenue(0.0f) {}
+    Phim() {}
     Phim(string id, string name, string g) : movieID(id), movieName(name), genre(g), revenue(0.0f) {}
 
     friend istream& operator>>(istream& is, Phim& p) {

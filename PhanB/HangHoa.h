@@ -7,16 +7,20 @@ using namespace std;
 
 class HangHoa {
 private:
+    int maHang;
     string tenHang;
     int soLuong;
     double donGia;
 
 public:
-    HangHoa() : tenHang(""), soLuong(0), donGia(0.0) {}
+    HangHoa() {}
 
     void nhapThongTin() {
+        cout << "Nhap ma hang: ";
+        cin >> maHang;
         cout << "Nhap ten hang: ";
-        cin >> tenHang;
+        cin.ignore(); 
+        getline(cin, tenHang);
         cout << "Nhap so luong: ";
         cin >> soLuong;
         cout << "Nhap don gia: ";
@@ -24,15 +28,17 @@ public:
     }
 
     void xuatThongTin() const {
-        cout << "Ten hang: " << tenHang << "\n"
+        cout << "Ma hang: " << maHang << "\n"
+             << "Ten hang: " << tenHang << "\n"
              << "So luong: " << soLuong << "\n"
              << "Don gia: " << donGia << "\n";
     }
 
     bool operator==(const HangHoa& other) const {
-        return tenHang == other.tenHang; // So sánh theo tên hàng
+        return maHang == other.maHang; 
     }
 
+    int getMaHang() const { return maHang; }
     string getTenHang() const { return tenHang; }
     int getSoLuong() const { return soLuong; }
     double getDonGia() const { return donGia; }

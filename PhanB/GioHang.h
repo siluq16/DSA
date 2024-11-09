@@ -15,28 +15,38 @@ private:
 
 public:
     void themHangHoa(const HangHoa &hang)
+{
+    for (auto it = danhSachHang.begin(); it != danhSachHang.end(); ++it)
     {
-        for (auto it = danhSachHang.begin(); it != danhSachHang.end(); ++it)
+        if (*it == hang)  
         {
-            if ((*it).getTenHang() == hang.getTenHang()) 
-            {
-                (*it).tangSoLuong(hang.getSoLuong());
-                return;
-            }
+            (*it).tangSoLuong(hang.getSoLuong());
+            return;
         }
-        danhSachHang.addLast(hang);
     }
+    danhSachHang.push_back(hang);
+}
 
-    void botHangHoa(const string& tenHang, int soLuong) {
+
+    void botHangHoa(const int& maHang, int soLuong) {
         for (auto it = danhSachHang.begin(); it != danhSachHang.end(); ++it) {
-            if ((*it).getTenHang() == tenHang) { 
+            if ((*it).getMaHang() == maHang ) { 
                 (*it).giamSoLuong(soLuong);
                 if ((*it).getSoLuong() <= 0) {
-                    danhSachHang.remove(*it);
+                    danhSachHang.erase(*it);
                 }
                 return;
             }
         }
+    }
+
+    bool checkMa(const int& maHang) {
+        for (auto it = danhSachHang.begin(); it != danhSachHang.end(); ++it) {
+            if ((*it).getMaHang() == maHang ) { 
+                return true;
+            }
+        }
+        return false;
     }
 
     double tinhTongTien() const
@@ -51,12 +61,17 @@ public:
 
     void xuatGioHang() const
     {
-        for (auto it = danhSachHang.begin(); it != danhSachHang.end(); ++it)
+        if (danhSachHang.empty()){
+            cout << "Gio Hang Trong" << endl;
+        }
+        else {
+            for (auto it = danhSachHang.begin(); it != danhSachHang.end(); ++it)
         {
             (*it).xuatThongTin(); 
-            cout << "\n";
+            cout << "<------------------->\n";
         }
         cout << "Tong tien: " << tinhTongTien() << "\n";
+        }
     }
 
     void xuatHoaDon() const
