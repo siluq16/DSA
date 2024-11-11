@@ -24,22 +24,22 @@ public:
         return is;
     }
 
-    friend ostream& operator<<(ostream& os, const Rap& r) {
+    friend ostream& operator<<(ostream& os, Rap& r) {
         os << "Mã rạp: " << r.cinemaID << ", Tên rạp: " << r.cinemaName 
            << ", Số ghế: " << r.seatCount << ", Doanh thu: " << r.revenue << endl;
         return os;
     }
 
-    bool operator<(const Rap& other) const {
+    bool operator<(Rap& other) {
         return revenue < other.revenue;
     }
 
     void updateRevenue(float amount) { revenue += amount; }
 
-    float getRevenue() const { return revenue; }
-    string getCinemaID() const { return cinemaID; }
-    string getCinemaName() const { return cinemaName; }
-    int getSeatCount() const { return seatCount; }
+    float getRevenue() { return revenue; }
+    string getCinemaID() { return cinemaID; }
+    string getCinemaName() { return cinemaName; }
+    int getSeatCount() { return seatCount; }
 
 };
 

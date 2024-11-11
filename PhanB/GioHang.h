@@ -14,7 +14,7 @@ private:
     SingleList<HangHoa> danhSachHang;
 
 public:
-    void themHangHoa(const HangHoa &hang)
+    void themHangHoa(HangHoa &hang)
 {
     for (auto it = danhSachHang.begin(); it != danhSachHang.end(); ++it)
     {
@@ -28,7 +28,7 @@ public:
 }
 
 
-    void botHangHoa(const int& maHang, int soLuong) {
+    void botHangHoa(int& maHang, int soLuong) {
         for (auto it = danhSachHang.begin(); it != danhSachHang.end(); ++it) {
             if ((*it).getMaHang() == maHang ) { 
                 (*it).giamSoLuong(soLuong);
@@ -40,7 +40,7 @@ public:
         }
     }
 
-    bool checkMa(const int& maHang) {
+    bool checkMa(int& maHang) {
         for (auto it = danhSachHang.begin(); it != danhSachHang.end(); ++it) {
             if ((*it).getMaHang() == maHang ) { 
                 return true;

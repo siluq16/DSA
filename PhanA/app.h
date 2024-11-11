@@ -15,8 +15,8 @@ template <typename T>
 void manageEntities(vector<T> &entities,
                     const string &entityName,
                     function<void(T &)> inputFunction,
-                    function<string(const T &)> getIDFunction,
-                    function<double(const T &)> getSortValueFunction)
+                    function<string(T &)> getIDFunction,
+                    function<double(T &)> getSortValueFunction)
 {
     int choice;
     do
@@ -48,7 +48,7 @@ void manageEntities(vector<T> &entities,
             cin >> id;
 
             auto it = find_if(entities.begin(), entities.end(),
-                              [&id, &getIDFunction](const T &entity)
+                              [&id, &getIDFunction](T &entity)
                               { return getIDFunction(entity) == id; });
 
             if (it != entities.end())
@@ -90,7 +90,7 @@ void manageEntities(vector<T> &entities,
             }
             else
             {
-                for (const auto &entity : entities)
+                for (auto &entity : entities)
                 {
                     cout << entity;
                 }
@@ -108,17 +108,17 @@ void manageEntities(vector<T> &entities,
             if (sortChoice == 1)
             {
                 sort(entities.begin(), entities.end(),
-                     [&getSortValueFunction](const T &a, const T &b)
+                     [&getSortValueFunction](T &a, T &b)
                      { return getSortValueFunction(a) > getSortValueFunction(b); });
             }
             else if (sortChoice == 2)
             {
                 sort(entities.begin(), entities.end(),
-                     [&getSortValueFunction](const T &a, const T &b)
+                     [&getSortValueFunction](T &a, T &b)
                      { return getSortValueFunction(a) < getSortValueFunction(b); });
             }
             cout << "Danh sách " << entityName << " sau khi sắp xếp:\n";
-            for (const auto &entity : entities)
+            for (auto &entity : entities)
             {
                 cout << entity;
             }
@@ -200,9 +200,9 @@ void App::manageEmployees()
         "Nhân viên",
         [](NhanVien &nv)
         { cin >> nv; },
-        [](const NhanVien &nv)
+        [](NhanVien &nv)
         { return nv.getEmployeeID(); },
-        [](const NhanVien &nv)
+        [](NhanVien &nv)
         { return nv.getSalary(); });
 }
 void App::manageCinemas()
@@ -212,9 +212,9 @@ void App::manageCinemas()
         "Rạp",
         [](Rap &r)
         { cin >> r; },
-        [](const Rap &r)
+        [](Rap &r)
         { return r.getCinemaID(); },
-        [](const Rap &r)
+        [](Rap &r)
         { return r.getRevenue(); });
 }
 
@@ -225,9 +225,9 @@ void App::manageMovies()
         "Phim",
         [](Phim &p)
         { cin >> p; },
-        [](const Phim &p)
+        [](Phim &p)
         { return p.getMovieID(); },
-        [](const Phim &p)
+        [](Phim &p)
         { return p.getRevenue(); });
 }
 
@@ -253,7 +253,7 @@ void App::manageSchedules()
             cin >> lc;
 
             bool movieExists = any_of(movies.begin(), movies.end(),
-                                      [&lc](const Phim &p)
+                                      [&lc](Phim &p)
                                       { return p.getMovieID() == lc.getMovieID(); });
             if (!movieExists)
             {
@@ -262,7 +262,7 @@ void App::manageSchedules()
             }
 
             bool cinemaExists = any_of(cinemas.begin(), cinemas.end(),
-                                       [&lc](const Rap &r)
+                                       [&lc](Rap &r)
                                        { return r.getCinemaID() == lc.getCinemaID(); });
             if (!cinemaExists)
             {
@@ -281,7 +281,7 @@ void App::manageSchedules()
             cin >> id;
 
             auto it = find_if(schedules.begin(), schedules.end(),
-                              [&id](const LichChieu &lc)
+                              [&id](LichChieu &lc)
                               { return lc.getScheduleID() == id; });
 
             if (it != schedules.end())
@@ -303,7 +303,7 @@ void App::manageSchedules()
             cin >> id;
 
             auto it = remove_if(schedules.begin(), schedules.end(),
-                                [&id](const LichChieu &lc)
+                                [&id](LichChieu &lc)
                                 { return lc.getScheduleID() == id; });
 
             if (it != schedules.end())
@@ -324,7 +324,7 @@ void App::manageSchedules()
             }
             else
             {
-                for (const auto &lc : schedules)
+                for (auto &lc : schedules)
                 {
                     cout << lc;
                 }
@@ -359,10 +359,10 @@ void App::manageRevenue()
             if (!movies.empty())
             {
                 auto maxMovie = max_element(movies.begin(), movies.end(),
-                                            [](const Phim &a, const Phim &b)
+                                            [](Phim &a, Phim &b)
                                             { return a.getRevenue() < b.getRevenue(); });
                 auto minMovie = min_element(movies.begin(), movies.end(),
-                                            [](const Phim &a, const Phim &b)
+                                            [](Phim &a, Phim &b)
                                             { return a.getRevenue() < b.getRevenue(); });
 
                 cout << "Phim có doanh thu cao nhất:\n"
@@ -381,10 +381,10 @@ void App::manageRevenue()
             if (!cinemas.empty())
             {
                 auto maxCinema = max_element(cinemas.begin(), cinemas.end(),
-                                             [](const Rap &a, const Rap &b)
+                                             [](Rap &a, Rap &b)
                                              { return a.getRevenue() < b.getRevenue(); });
                 auto minCinema = min_element(cinemas.begin(), cinemas.end(),
-                                             [](const Rap &a, const Rap &b)
+                                             [](Rap &a, Rap &b)
                                              { return a.getRevenue() < b.getRevenue(); });
 
                 cout << "Rạp có doanh thu cao nhất:\n"
@@ -403,11 +403,11 @@ void App::manageRevenue()
             if (!movies.empty())
             {
                 sort(movies.begin(), movies.end(),
-                     [](const Phim &a, const Phim &b)
+                     [](Phim &a, Phim &b)
                      { return a.getRevenue() > b.getRevenue(); });
 
                 cout << "\nDanh sách phim theo doanh thu (giảm dần):\n";
-                for (const auto &p : movies)
+                for (auto &p : movies)
                 {
                     cout << p;
                 }
@@ -423,11 +423,11 @@ void App::manageRevenue()
             if (!cinemas.empty())
             {
                 sort(cinemas.begin(), cinemas.end(),
-                     [](const Rap &a, const Rap &b)
+                     [](Rap &a, Rap &b)
                      { return a.getRevenue() > b.getRevenue(); });
 
                 cout << "\nDanh sách rạp theo doanh thu (giảm dần):\n";
-                for (const auto &r : cinemas)
+                for (auto &r : cinemas)
                 {
                     cout << r;
                 }

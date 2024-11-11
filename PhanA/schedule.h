@@ -30,20 +30,20 @@ public:
         return is;
     }
 
-    friend ostream& operator<<(ostream& os, const LichChieu& lc) {
+    friend ostream& operator<<(ostream& os, LichChieu& lc) {
         os << "Mã lịch chiếu: " << lc.scheduleID << ", Mã phim: " << lc.movieID 
            << ", Mã rạp: " << lc.cinemaID << ", Thời gian chiếu: " << lc.showTime 
            << ", Giá vé: " << lc.ticketPrice << ", Số ghế đã bán: " << lc.seatsSold << endl;
         return os;
     }
 
-    float calculateRevenue() const { return ticketPrice * seatsSold; }
+    float calculateRevenue() { return ticketPrice * seatsSold; }
 
-    float getTicketPrice() const { return ticketPrice; }
-    string getMovieID() const { return movieID; }
-    string getCinemaID() const { return cinemaID; }
-    int getSeatsSold() const { return seatsSold; }
-    string getScheduleID() const { return scheduleID; }
+    float getTicketPrice() { return ticketPrice; }
+    string getMovieID() { return movieID; }
+    string getCinemaID() { return cinemaID; }
+    int getSeatsSold() { return seatsSold; }
+    string getScheduleID() { return scheduleID; }
 };
 
 #endif 

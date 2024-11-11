@@ -27,21 +27,21 @@ public:
         cin >> donGia;
     }
 
-    void xuatThongTin() const {
+    void xuatThongTin() {
         cout << "Ma hang: " << maHang << "\n"
              << "Ten hang: " << tenHang << "\n"
              << "So luong: " << soLuong << "\n"
              << "Don gia: " << donGia << "\n";
     }
 
-    bool operator==(const HangHoa& other) const {
+    bool operator==(HangHoa& other) {
         return maHang == other.maHang; 
     }
 
-    int getMaHang() const { return maHang; }
-    string getTenHang() const { return tenHang; }
-    int getSoLuong() const { return soLuong; }
-    double getDonGia() const { return donGia; }
+    int getMaHang() { return maHang; }
+    string getTenHang() { return tenHang; }
+    int getSoLuong() { return soLuong; }
+    double getDonGia() { return donGia; }
 
     void tangSoLuong(int sl) { soLuong += sl; }
     void giamSoLuong(int sl) { soLuong -= sl; }

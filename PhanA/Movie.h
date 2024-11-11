@@ -23,21 +23,21 @@ public:
         return is;
     }
 
-    friend ostream& operator<<(ostream& os, const Phim& p) {
+    friend ostream& operator<<(ostream& os, Phim& p) {
         os << "Mã phim: " << p.movieID << ", Tên phim: " << p.movieName 
            << ", Thể loại: " << p.genre << ", Doanh thu: " << p.revenue << endl;
         return os;
     }
 
-    bool operator<(const Phim& other) const {
+    bool operator<(Phim& other) {
         return revenue < other.revenue;
     }
 
     void updateRevenue(float amount) { revenue += amount; }
 
-    string getMovieID() const { return movieID; }
-    string getMovieName() const { return movieName; }
-    float getRevenue() const { return revenue; }
+    string getMovieID() { return movieID; }
+    string getMovieName() { return movieName; }
+    float getRevenue() { return revenue; }
 
 };
 

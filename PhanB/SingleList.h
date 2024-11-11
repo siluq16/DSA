@@ -21,7 +21,7 @@ public:
 
     bool empty() const { return head == nullptr; }
 
-    void push_front(const T& value) {
+    void push_front(T& value) {
         Node<T>* newNode = new Node<T>(value);
         newNode->next = head;
         head = newNode;
@@ -29,7 +29,7 @@ public:
         num++;
     }
 
-    void push_back(const T& value) {
+    void push_back(T& value) {
         Node<T>* newNode = new Node<T>(value);
         if (tail) {
             tail->next = newNode;
@@ -66,8 +66,8 @@ public:
         num--;
     }
 
-    T front() const { return head ? head->data : T(); }
-    T back() const { return tail ? tail->data : T(); }
+    T front() { return head ? head->data : T(); }
+    T back() { return tail ? tail->data : T(); }
 
     void sort() {
         if (!head) return;
@@ -80,7 +80,7 @@ public:
         }
     }
 
-    void erase(const T& value) {
+    void erase(T& value) {
         Node<T>* current = head;
         Node<T>* previous = nullptr;
         while (current) {
@@ -105,7 +105,7 @@ public:
     iterator begin() const { return iterator(head); }
     iterator end() const { return iterator(nullptr); }
 
-    int size() const { return num; }
+    int size() { return num; }
 };
 
 #endif

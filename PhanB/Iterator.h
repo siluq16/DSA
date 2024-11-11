@@ -18,9 +18,9 @@ public:
         return *this;
     }
 
-    bool operator!=(const Iterator& other) const { return nodePtr != other.nodePtr; }
+    bool operator!=(const Iterator& other) { return nodePtr != other.nodePtr; }
 
-    Node<T>* getcurr() const { return nodePtr; }  
+    Node<T>* getcurr() { return nodePtr; }  
 };
 
 #endif

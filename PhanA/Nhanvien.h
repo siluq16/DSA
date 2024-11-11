@@ -26,20 +26,20 @@ public:
         return is;
     }
 
-    friend ostream& operator<<(ostream& os, const NhanVien& nv) {
+    friend ostream& operator<<(ostream& os, NhanVien& nv) {
         os << "Mã nhân viên: " << nv.employeeID << ", Tên: " << nv.name 
            << ", Chức vụ: " << nv.position << ", Lương: " << nv.salary << endl;
         return os;
     }
 
-    bool operator<(const NhanVien& other) const {
+    bool operator<(NhanVien& other) {
         return salary < other.salary;
     }
 
-    string getEmployeeID() const { return employeeID; }
-    string getName() const { return name; }
-    string getPosition() const { return position; }
-    float getSalary() const { return salary; }
+    string getEmployeeID() { return employeeID; }
+    string getName() { return name; }
+    string getPosition() { return position; }
+    float getSalary() { return salary; }
 
 };
 
